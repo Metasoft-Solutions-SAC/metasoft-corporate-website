@@ -1,0 +1,54 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta desarrollar un software a medida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El costo depende de la complejidad, funcionalidades y tecnologías. Como referencia: Aplicación web básica $3,000-$8,000 USD, App móvil nativa $5,000-$15,000 USD, Software empresarial $10,000-$50,000+ USD, Plataforma SaaS $20,000-$100,000+ USD. Ofrecemos cotización gratuita detallada después de la consultoría inicial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo toma desarrollar un proyecto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tiempos promedio según tipo de proyecto: Landing page corporativa 2-4 semanas, Aplicación web CRUD 6-12 semanas, App móvil iOS + Android 10-16 semanas, Software empresarial complejo 20-40 semanas. Trabajamos con sprints de 2 semanas con entregas funcionales cada sprint."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tecnologías utilizan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trabajamos con tecnologías modernas: Frontend - React.js, Vue.js, Next.js para web y React Native, Flutter para móviles. Backend - Node.js (Express, NestJS), Python (Django, FastAPI), .NET Core. Bases de datos - PostgreSQL, MySQL, MongoDB, Redis. Cloud - AWS, Google Cloud, Azure, Digital Ocean."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dan soporte después del lanzamiento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, incluimos 3 meses de soporte técnico gratuito que cubre corrección de bugs, actualizaciones de seguridad, ajustes menores de UI/UX, soporte por email/WhatsApp y SLA de 24 horas para incidencias críticas. Después ofrecemos planes de mantenimiento desde $200/mes con monitoreo 24/7, backups automáticos, actualizaciones de dependencias y 10 horas de mejoras mensuales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo es el proceso de trabajo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seguimos metodología ágil en 6 fases: 1) Descubrimiento (1-2 semanas) - Entendemos tu negocio y objetivos, 2) Diseño (2-3 semanas) - Wireframes y prototipos, 3) Desarrollo (60-80% del tiempo) - Sprints de 2 semanas con demos funcionales, 4) Pruebas (2 semanas) - QA exhaustivo y tests automatizados, 5) Despliegue (1 semana) - Deploy en producción, 6) Soporte (3 meses) - Acompañamiento post-lanzamiento incluido."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo solicitar cambios durante el desarrollo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, los cambios son parte natural del desarrollo ágil. Distinguimos cambios sin costo (ajustes dentro del alcance original, corrección de bugs, mejoras de UX detectadas en testing) y cambios con costo o Change Requests (funcionalidades nuevas no contempladas, modificaciones de arquitectura, integraciones adicionales). Cada change request se documenta, cotiza y aprueba antes de ejecutar con transparencia total en alcance y costos."
+      }
+    }
+  ]
+}

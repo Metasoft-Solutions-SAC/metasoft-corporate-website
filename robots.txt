@@ -1,16 +1,27 @@
 User-agent: *
 Allow: /
+
+# Permitir crawling general
 Disallow: /admin/
 Disallow: /private/
-Disallow: /*?
 
+# CRÍTICO: Permitir parámetros UTM para tracking de campañas
+Allow: /*?utm_*
+Allow: /*?ref=*
+Allow: /*?source=*
+Allow: /*?fbclid=*
+Allow: /*?gclid=*
+
+# Permitir assets
 Allow: /assets/css/
 Allow: /assets/js/
 Allow: /assets/images/
 
+# Bloquear archivos innecesarios
 Disallow: /*.md$
 Disallow: /CHANGELOG.md
 Disallow: /LICENSE
 
+# Sitemap
 Sitemap: https://metasoft.pe/sitemap.xml
 
