@@ -1,0 +1,182 @@
+/* ========================================
+   Footer - Metasoft Solutions
+   ======================================== */
+
+.footer {
+    background-color: rgba(35, 66, 95, 0.2);
+    border-top: 1px solid rgba(26, 107, 194, 0.2);
+    padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        padding: 4rem 0;
+    }
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+}
+
+/* Company Info */
+.footer-company {
+    grid-column: span 1;
+}
+
+@media (min-width: 1024px) {
+    .footer-company {
+        grid-column: span 1;
+    }
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(to bottom right, var(--primary-color), var(--primary-light));
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo-icon span {
+    color: var(--text-light);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.footer-logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo-name {
+    color: var(--text-light);
+    font-size: 1.125rem;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+}
+
+.footer-logo-subtitle {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: -0.125rem;
+}
+
+.footer-description {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    max-width: 24rem;
+    line-height: 1.6;
+}
+
+.footer-social {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgba(35, 66, 95, 0.5);
+    border: 1px solid rgba(26, 107, 194, 0.2);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition-base);
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: var(--text-light);
+    background-color: rgba(26, 107, 194, 0.2);
+    border-color: rgba(26, 107, 194, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Footer Links */
+.footer-links h3 {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition-base);
+    font-size: 0.9375rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(35, 66, 95, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer-copyright,
+.footer-tagline {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footer-copyright {
+        text-align: left;
+    }
+
+    .footer-tagline {
+        text-align: right;
+    }
+}

@@ -1,0 +1,71 @@
+/* ========================================
+   Variables CSS - Metasoft Solutions
+   ======================================== */
+:root {
+    /* Paleta de Colores Metasoft Solutions */
+    --color-dark-deep: #020814;        /* Azul Oscuro Profundo - Fondo principal */
+    --color-snow-white: #E5F3F8;       /* Blanco Nieve - Textos principales */
+    --color-corporate-blue: #1A6BC2;   /* Azul Corporativo - Color primario */
+    --color-sky-blue: #4BBBEC;         /* Azul Cielo - Color secundario */
+    --color-medium-gray: #8D9AA2;      /* Gris Medio - Textos secundarios */
+    --color-grayish-blue: #23425F;     /* Azul Grisáceo - Fondos de tarjetas */
+    
+    /* Alias para uso semántico */
+    --primary-color: var(--color-corporate-blue);
+    --primary-light: var(--color-sky-blue);
+    --bg-dark: var(--color-dark-deep);
+    --bg-dark-secondary: var(--color-grayish-blue);
+    --text-light: var(--color-snow-white);
+    --text-muted: var(--color-medium-gray);
+    
+    /* Colores adicionales para formularios y alertas */
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --bg-secondary: #f8f9fa;
+    --border-color: #e0e0e0;
+    --error-color: #ef4444;
+    --success-color: #10b981;
+    --info-color: #3b82f6;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+    
+    /* Tipografía */
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.5rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 4rem;
+    
+    /* Bordes */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 0.75rem;
+    --border-radius-xl: 1rem;
+    --border-radius-full: 9999px;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    
+    /* Transiciones */
+    --transition-base: all 0.3s ease;
+    --transition-fast: all 0.15s ease;
+    
+    /* Z-index */
+    --z-header: 1000;
+    --z-tooltip: 2000;
+}

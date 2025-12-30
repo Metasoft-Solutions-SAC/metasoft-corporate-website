@@ -1,0 +1,294 @@
+/* ========================================
+   Methodology Section - Metasoft Solutions
+   ======================================== */
+
+.methodology {
+    position: relative;
+    padding: 3rem 0;
+    background-color: var(--bg-dark);
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .methodology {
+        padding: 8rem 0;
+    }
+}
+
+/* Decorative Background */
+.methodology-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.methodology-circle-1 {
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    width: 24rem;
+    height: 24rem;
+    background-color: rgba(75, 187, 236, 0.05);
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.methodology-circle-2 {
+    position: absolute;
+    bottom: 25%;
+    left: 25%;
+    width: 18rem;
+    height: 18rem;
+    background-color: rgba(26, 107, 194, 0.05);
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.methodology-wrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+/* Section Header */
+.methodology-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.methodology-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: rgba(35, 66, 95, 0.5);
+    border: 1px solid rgba(26, 107, 194, 0.3);
+    border-radius: var(--border-radius-full);
+    margin-bottom: 1.5rem;
+}
+
+.methodology-badge span {
+    color: var(--primary-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.methodology-header h2 {
+    font-size: clamp(1.875rem, 4vw, 2.25rem);
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.methodology-intro {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--text-muted);
+    max-width: 48rem;
+    margin: 0 auto;
+    line-height: 1.75;
+}
+
+/* Timeline */
+.methodology-timeline {
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+/* Connection Line - Desktop Only */
+.timeline-line {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .timeline-line {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, var(--primary-color), var(--primary-light), var(--primary-color));
+        opacity: 0.2;
+        transform: translateY(-50%);
+    }
+}
+
+/* Phases Grid */
+.phases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .phases-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .phases-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Phase Card */
+.phase-card {
+    position: relative;
+    background-color: rgba(35, 66, 95, 0.3);
+    border: 1px solid rgba(26, 107, 194, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: var(--transition-base);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.phase-card:nth-child(1) {
+    animation: fadeInUp 0.8s ease-out 0.1s forwards;
+}
+
+.phase-card:nth-child(2) {
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.phase-card:nth-child(3) {
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.phase-card:nth-child(4) {
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.phase-card:nth-child(5) {
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+.phase-card:nth-child(6) {
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.phase-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(26, 107, 194, 0.5);
+    background-color: rgba(35, 66, 95, 0.4);
+}
+
+/* Mobile Connection Line */
+.phase-mobile-line {
+    display: block;
+    position: absolute;
+    left: 2rem;
+    top: 5rem;
+    bottom: -2rem;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--primary-light));
+    opacity: 0.2;
+}
+
+.phase-card:last-child .phase-mobile-line {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .phase-mobile-line {
+        display: none;
+    }
+}
+
+/* Phase Number */
+.phase-number {
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(to bottom right, var(--primary-color), var(--primary-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--bg-dark);
+    color: var(--text-light);
+    font-weight: 600;
+    transition: var(--transition-base);
+    z-index: 2;
+}
+
+.phase-card:hover .phase-number {
+    transform: scale(1.2) rotate(360deg);
+}
+
+/* Phase Icon */
+.phase-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-base);
+}
+
+.phase-card:hover .phase-icon {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.phase-icon svg {
+    color: var(--text-light);
+}
+
+/* Phase Content */
+.phase-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.phase-card p {
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+/* Principles Section */
+.methodology-principles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.7s forwards;
+}
+
+@media (min-width: 768px) {
+    .methodology-principles {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Principle Card */
+.principle-card {
+    border: 1px solid rgba(26, 107, 194, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: var(--transition-base);
+}
+
+.principle-card:hover {
+    transform: scale(1.05);
+    border-color: rgba(26, 107, 194, 0.5);
+}
+
+.principle-card h4 {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.principle-card p {
+    color: var(--text-muted);
+    line-height: 1.75;
+}
