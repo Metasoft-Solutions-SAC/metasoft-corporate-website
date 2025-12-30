@@ -215,3 +215,92 @@
     background-color: var(--primary-color);
     color: var(--text-light);
 }
+
+/* ========================================
+   UX Enhancements - Header
+   ======================================== */
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(2, 8, 20, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-mobile {
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-mobile.active {
+    transform: translateX(0);
+}
+
+/* Logo Hover Effects */
+.logo {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.logo:active {
+    transform: scale(0.98);
+}
+
+/* Hamburger Animations */
+.hamburger {
+    transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+}
+
+.hamburger:active {
+    transform: scale(0.95);
+}
+
+/* Desktop Nav Link Underline Animation */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-light);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile Nav Link Slide Animation */
+.nav-link-mobile {
+    transition: all 0.3s ease;
+}
+
+.nav-link-mobile:hover {
+    background-color: rgba(26, 107, 194, 0.1);
+    transform: translateX(8px);
+}

@@ -11,8 +11,16 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollEffects();
     initSmoothScroll();
     initFormValidation();
+    
+    // Inicializar mejoras UX
+    initScrollProgress();
+    initScrollToTop();
+    initToastNotifications();
+    initAccessibilityFeatures();
+    initReducedMotion();
+    preventFOUC();
 
-    console.log('Metasoft Corporate Website - Main scripts initialized');
+    console.log('✨ Metasoft Corporate Website - All scripts initialized');
 });
 
 /**
@@ -294,3 +302,227 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+/* ========================================
+   UX ENHANCEMENTS - Global Functions
+   ======================================== */
+
+/**
+ * Scroll Progress Indicator
+ */
+function initScrollProgress() {
+    const progressBar = document.querySelector('.scroll-progress');
+    if (!progressBar) return;
+
+    function updateProgress() {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.pageYOffset / windowHeight) * 100;
+        progressBar.style.width = scrolled + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+}
+
+/**
+ * Scroll to Top Button
+ */
+function initScrollToTop() {
+    const scrollBtn = document.querySelector('.scroll-to-top');
+    if (!scrollBtn) return;
+
+    function toggleScrollBtn() {
+        if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    }
+
+    window.addEventListener('scroll', toggleScrollBtn);
+
+    scrollBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        // Quitar el foco de cualquier elemento activo para evitar que aparezca el skip-to-content
+        setTimeout(() => {
+            document.activeElement?.blur();
+        }, 100);
+    });
+
+    toggleScrollBtn();
+}
+
+/**
+ * Toast Notifications System
+ */
+let toastContainer;
+
+function initToastNotifications() {
+    toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    toastContainer.setAttribute('role', 'region');
+    toastContainer.setAttribute('aria-label', 'Notificaciones');
+    toastContainer.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toastContainer);
+}
+
+function showToast(message, type = 'info', duration = 5000) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.setAttribute('role', 'alert');
+    
+    const icons = {
+        success: '✓',
+        error: '✕',
+        info: 'ℹ'
+    };
+
+    const titles = {
+        success: 'Éxito',
+        error: 'Error',
+        info: 'Información'
+    };
+
+    toast.innerHTML = `
+        <div class="toast-icon">${icons[type]}</div>
+        <div class="toast-content">
+            <div class="toast-title">${titles[type]}</div>
+            <div class="toast-message">${message}</div>
+        </div>
+        <button class="toast-close" aria-label="Cerrar notificación">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', () => removeToast(toast));
+
+    if (duration > 0) {
+        setTimeout(() => removeToast(toast), duration);
+    }
+
+    return toast;
+}
+
+function removeToast(toast) {
+    toast.classList.remove('show');
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.parentElement.removeChild(toast);
+        }
+    }, 300);
+}
+
+/**
+ * Accessibility Features
+ */
+function initAccessibilityFeatures() {
+    // Skip to content functionality
+    const skipLink = document.querySelector('.skip-to-content');
+    if (skipLink) {
+        skipLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.setAttribute('tabindex', '-1');
+                mainContent.focus();
+                mainContent.removeAttribute('tabindex');
+            }
+        });
+    }
+
+    // Anunciar navegación para lectores de pantalla
+    const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const section = this.getAttribute('data-section');
+            announceForScreenReader(`Navegando a sección ${section}`);
+        });
+    });
+}
+
+/**
+ * Anunciar para lectores de pantalla
+ */
+function announceForScreenReader(message) {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('role', 'status');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.style.position = 'absolute';
+    announcement.style.left = '-10000px';
+    announcement.style.width = '1px';
+    announcement.style.height = '1px';
+    announcement.style.overflow = 'hidden';
+    announcement.textContent = message;
+    
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+        document.body.removeChild(announcement);
+    }, 1000);
+}
+
+/**
+ * Prefers Reduced Motion Support
+ */
+function initReducedMotion() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    function handleReducedMotion(e) {
+        if (e.matches) {
+            document.documentElement.style.setProperty('--transition-base', 'none');
+            document.documentElement.style.setProperty('--transition-fast', 'none');
+            console.log('🎬 Reduced motion mode activated');
+        } else {
+            document.documentElement.style.setProperty('--transition-base', 'all 0.3s ease');
+            document.documentElement.style.setProperty('--transition-fast', 'all 0.15s ease');
+        }
+    }
+
+    handleReducedMotion(prefersReducedMotion);
+    prefersReducedMotion.addEventListener('change', handleReducedMotion);
+}
+
+/**
+ * Prevención de FOUC (Flash of Unstyled Content)
+ */
+function preventFOUC() {
+    window.addEventListener('load', function() {
+        document.documentElement.classList.remove('loading');
+        document.documentElement.classList.add('loaded');
+    });
+
+    if (document.readyState === 'loading') {
+        document.documentElement.classList.add('loading');
+    }
+}
+
+/**
+ * Throttle para optimizar scroll
+ */
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Export para uso global
+window.showToast = showToast;
+window.announceForScreenReader = announceForScreenReader;

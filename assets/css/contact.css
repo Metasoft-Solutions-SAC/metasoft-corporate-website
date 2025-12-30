@@ -402,3 +402,176 @@
 .btn-submit:hover svg {
     transform: translateX(4px);
 }
+
+/* ========================================
+   UX Enhancements - Contact Form
+   ======================================== */
+
+/* Loading States en Botones */
+.btn-loader {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+button.loading {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
+}
+
+button.loading .btn-text {
+    opacity: 0.5;
+}
+
+button.loading .btn-loader {
+    display: inline-block;
+}
+
+button.loading .btn-icon {
+    display: none;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Form Enhanced Focus States */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 107, 194, 0.1);
+}
+
+/* Input Valid State */
+.form-group input.valid,
+.form-group textarea.valid {
+    border-color: var(--success-color);
+}
+
+.form-group input.valid:focus,
+.form-group textarea.valid:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Input Error State */
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--error-color);
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Form Error Message Enhanced */
+.form-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.form-error.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-error::before {
+    content: '⚠';
+    font-size: 1rem;
+}
+
+/* Form Success Message */
+.form-success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--success-color);
+}
+
+.form-success::before {
+    content: '✓';
+    font-size: 1rem;
+}
+
+/* Required Field Indicator */
+.form-group label.required::after {
+    content: ' *';
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+/* Button Ripple Effect */
+.btn-primary,
+.btn-secondary,
+.btn-submit {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before,
+.btn-secondary::before,
+.btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.btn-submit:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary:hover,
+.btn-submit:hover {
+    box-shadow: 0 8px 16px rgba(26, 107, 194, 0.4);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 8px 16px rgba(75, 187, 236, 0.3);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-submit:active {
+    transform: scale(0.97);
+}
+
+/* Focus Visible on Buttons */
+button:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-submit:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 3px;
+}
