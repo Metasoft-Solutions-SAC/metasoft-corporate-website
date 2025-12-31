@@ -33,6 +33,8 @@ function initSectionAnimations() {
         // Fallback: mostrar todas las secciones inmediatamente
         document.querySelectorAll('section').forEach(section => {
             section.classList.add('is-visible');
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
         });
         return;
     }

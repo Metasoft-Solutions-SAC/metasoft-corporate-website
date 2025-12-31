@@ -1,5 +1,6 @@
 /* ========================================
    Header - Metasoft Solutions
+   Refactored with simplified structure
    ======================================== */
 
 .header {
@@ -28,7 +29,10 @@
     }
 }
 
-/* Logo */
+/* ========================================
+   Logo
+   ======================================== */
+
 .logo {
     display: flex;
     align-items: center;
@@ -37,11 +41,16 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    transition: var(--transition-base);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .logo:hover {
-    opacity: 0.8;
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.logo:active {
+    transform: scale(0.98);
 }
 
 .logo-icon {
@@ -97,7 +106,10 @@
     margin-top: -0.125rem;
 }
 
-/* Desktop Navigation */
+/* ========================================
+   Desktop Navigation
+   ======================================== */
+
 .nav-desktop {
     display: none;
     align-items: center;
@@ -113,11 +125,14 @@
 .nav-link {
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-lg);
+    background: none;
+    border: none;
     color: var(--text-muted);
-    text-decoration: none;
-    transition: var(--transition-base);
     font-size: 0.9375rem;
     font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
 }
 
 .nav-link:hover {
@@ -132,176 +147,8 @@
     box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
 }
 
-/* Mobile Menu Button */
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 2rem;
-    height: 2rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.25rem;
-    border-radius: var(--border-radius-lg);
-    transition: var(--transition-base);
-}
-
-.hamburger:hover {
-    background-color: rgba(35, 66, 95, 0.5);
-}
-
-@media (min-width: 1024px) {
-    .hamburger {
-        display: none;
-    }
-}
-
-.hamburger span {
-    width: 100%;
-    height: 2px;
-    background-color: var(--text-light);
-    transition: var(--transition-base);
-    border-radius: 2px;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-}
-
-/* Mobile Navigation */
-.nav-mobile {
-    display: none;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding-bottom: 1rem;
-}
-
-.nav-mobile.active {
-    display: flex;
-}
-
-@media (min-width: 1024px) {
-    .nav-mobile {
-        display: none !important;
-    }
-}
-
-.nav-link-mobile {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border-radius: var(--border-radius-lg);
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: var(--transition-base);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    text-align: left;
-    display: block;
-}
-
-.nav-link-mobile:hover {
-    color: var(--text-light);
-    background-color: rgba(35, 66, 95, 0.5);
-}
-
-.nav-link-mobile.active {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: var(--text-light);
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
-    border-left: 4px solid var(--primary-light);
-}
-
 /* ========================================
-   UX Enhancements - Header
-   ======================================== */
-
-/* Mobile Menu Overlay */
-.mobile-menu-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(2, 8, 20, 0.8);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 998;
-}
-
-.mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.nav-mobile {
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.nav-mobile.active {
-    transform: translateX(0);
-}
-
-/* Logo Hover Effects */
-.logo {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-
-.logo:active {
-    transform: scale(0.98);
-}
-
-/* Hamburger Animations */
-.hamburger {
-    transition: transform 0.3s ease;
-}
-
-.hamburger:hover {
-    transform: scale(1.1);
-}
-
-.hamburger:active {
-    transform: scale(0.95);
-}
-
-/* Desktop Nav Link Underline Animation */
-.nav-link {
-    position: relative;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-light);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
-
-/* ========================================
-   Language Selector
+   Language Selector Desktop
    ======================================== */
 
 .language-selector {
@@ -345,30 +192,6 @@
     border-color: var(--primary-light);
     color: var(--text-light);
     box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
-    transform: scale(1.05);
-}
-
-.lang-button.active .lang-flag {
-    animation: flagPulse 0.5s ease-out;
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
-}
-
-@keyframes flagPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.lang-flag {
-    font-size: 1.125rem;
-    line-height: 1;
-    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .lang-text {
@@ -376,12 +199,103 @@
     letter-spacing: 0.025em;
 }
 
-/* Language Selector Mobile */
+/* ========================================
+   Mobile Menu Button
+   ======================================== */
+
+.mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-base);
+}
+
+.mobile-menu-button:hover {
+    background-color: rgba(35, 66, 95, 0.5);
+}
+
+@media (min-width: 1024px) {
+    .mobile-menu-button {
+        display: none;
+    }
+}
+
+.mobile-menu-button .close-icon {
+    display: none;
+}
+
+.mobile-menu-button[aria-expanded="true"] .menu-icon {
+    display: none;
+}
+
+.mobile-menu-button[aria-expanded="true"] .close-icon {
+    display: block;
+}
+
+/* ========================================
+   Mobile Navigation
+   ======================================== */
+
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 0;
+}
+
+.nav-mobile.active {
+    display: flex;
+}
+
+@media (min-width: 1024px) {
+    .nav-mobile {
+        display: none !important;
+    }
+}
+
+.nav-link-mobile {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-lg);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.nav-link-mobile:hover {
+    color: var(--text-light);
+    background-color: rgba(35, 66, 95, 0.5);
+}
+
+.nav-link-mobile.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--text-light);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
+}
+
+/* ========================================
+   Language Selector Mobile
+   ======================================== */
+
 .language-selector-mobile {
     display: flex;
     gap: 0.5rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -389,6 +303,11 @@
     flex: 1;
     justify-content: center;
     padding: 0.75rem 1rem;
+}
+
+.language-selector-mobile .lang-flag {
+    font-size: 1.125rem;
+    line-height: 1;
 }
 
 .language-selector-mobile .lang-text {
@@ -401,12 +320,34 @@
     }
 }
 
-/* Mobile Nav Link Slide Animation */
-.nav-link-mobile {
-    transition: all 0.3s ease;
+/* ========================================
+   Accessibility & Focus Styles
+   ======================================== */
+
+.logo:focus-visible,
+.nav-link:focus-visible,
+.nav-link-mobile:focus-visible,
+.lang-button:focus-visible,
+.mobile-menu-button:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
 }
 
-.nav-link-mobile:hover {
-    background-color: rgba(26, 107, 194, 0.1);
-    transform: translateX(8px);
+/* ========================================
+   Animations
+   ======================================== */
+
+.nav-mobile {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

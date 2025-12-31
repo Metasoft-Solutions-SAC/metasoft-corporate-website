@@ -49,9 +49,6 @@
 .about-header {
     text-align: center;
     margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .about-badge {
@@ -101,9 +98,6 @@
 
 .about-image {
     position: relative;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .image-glow {
@@ -128,12 +122,6 @@
 
 .about-image:hover img {
     transform: scale(1.05);
-}
-
-.about-text {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
 }
 
 .about-text h3 {
@@ -171,23 +159,9 @@
     border-radius: 0.75rem;
     padding: 2rem;
     transition: var(--transition-base);
-    opacity: 0;
-    transform: translateY(30px);
     height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.feature-card:nth-child(1) {
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-}
-
-.feature-card:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.3s forwards;
-}
-
-.feature-card:nth-child(3) {
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
 }
 
 .feature-card:hover {

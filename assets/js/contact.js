@@ -1,40 +1,11 @@
 /**
  * Contact Section - Metasoft Solutions
- * Maneja el formulario de contacto, validación y animaciones
+ * Maneja el formulario de contacto y validación (las animaciones se gestionan globalmente en main.js)
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    initContactAnimations();
     initContactForm();
 });
-
-/**
- * Inicializar animaciones de la sección Contact
- */
-function initContactAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '-100px 0px -100px 0px'
-    };
-
-    // Animar header
-    const header = document.querySelector('.contact-header');
-    if (header) {
-        animateOnScroll(header, observerOptions, 0);
-    }
-
-    // Animar sección de información
-    const infoSection = document.querySelector('.contact-info-section');
-    if (infoSection) {
-        animateOnScroll(infoSection, observerOptions, 0.2);
-    }
-
-    // Animar sección del formulario
-    const formSection = document.querySelector('.contact-form-section');
-    if (formSection) {
-        animateOnScroll(formSection, observerOptions, 0.3);
-    }
-}
 
 /**
  * Inicializar formulario de contacto
@@ -251,25 +222,4 @@ function handleFormSubmit(form) {
     }, 2000);
 }
 
-/**
- * Animar elemento cuando es visible en el viewport
- * @param {HTMLElement} element - Elemento a animar
- * @param {Object} options - Opciones del Intersection Observer
- * @param {number} delay - Retraso en segundos antes de animar
- */
-function animateOnScroll(element, options, delay = 0) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, delay * 1000);
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
 
-    observer.observe(element);
-}

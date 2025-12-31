@@ -24,9 +24,6 @@
 .services-header {
     text-align: center;
     margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .services-badge {
@@ -86,31 +83,9 @@
     border-radius: 0.75rem;
     overflow: hidden;
     transition: var(--transition-base);
-    opacity: 0;
-    transform: translateY(30px);
     height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.service-card:nth-child(1) {
-    animation: fadeInUp 0.8s ease-out 0.1s forwards;
-}
-
-.service-card:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-}
-
-.service-card:nth-child(3) {
-    animation: fadeInUp 0.8s ease-out 0.3s forwards;
-}
-
-.service-card:nth-child(4) {
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-}
-
-.service-card:nth-child(5) {
-    animation: fadeInUp 0.8s ease-out 0.5s forwards;
 }
 
 .service-card:hover {
@@ -195,9 +170,6 @@
     border-radius: 1rem;
     padding: 2rem;
     text-align: center;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.6s forwards;
     transition: var(--transition-base);
 }
 

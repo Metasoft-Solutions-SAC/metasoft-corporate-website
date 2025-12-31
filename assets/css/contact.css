@@ -55,9 +55,6 @@
 .contact-header {
     text-align: center;
     margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .contact-badge {
@@ -105,9 +102,6 @@
 
 /* Contact Info Section */
 .contact-info-section {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .contact-info-cards {
@@ -195,31 +189,6 @@
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
-    opacity: 0;
-    transform: translateX(-20px);
-}
-
-.contact-benefits li:nth-child(1) {
-    animation: fadeInLeft 0.6s ease-out 0.6s forwards;
-}
-
-.contact-benefits li:nth-child(2) {
-    animation: fadeInLeft 0.6s ease-out 0.7s forwards;
-}
-
-.contact-benefits li:nth-child(3) {
-    animation: fadeInLeft 0.6s ease-out 0.8s forwards;
-}
-
-.contact-benefits li:nth-child(4) {
-    animation: fadeInLeft 0.6s ease-out 0.9s forwards;
-}
-
-@keyframes fadeInLeft {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 .contact-benefits li svg {
@@ -234,9 +203,6 @@
 
 /* Contact Form Section */
 .contact-form-section {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.3s forwards;
 }
 
 .contact-form-container {

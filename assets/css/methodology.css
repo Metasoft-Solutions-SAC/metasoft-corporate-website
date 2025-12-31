@@ -55,9 +55,6 @@
 .methodology-header {
     text-align: center;
     margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .methodology-badge {
@@ -142,32 +139,6 @@
     border-radius: 0.75rem;
     padding: 1.5rem;
     transition: var(--transition-base);
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.phase-card:nth-child(1) {
-    animation: fadeInUp 0.8s ease-out 0.1s forwards;
-}
-
-.phase-card:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-}
-
-.phase-card:nth-child(3) {
-    animation: fadeInUp 0.8s ease-out 0.3s forwards;
-}
-
-.phase-card:nth-child(4) {
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-}
-
-.phase-card:nth-child(5) {
-    animation: fadeInUp 0.8s ease-out 0.5s forwards;
-}
-
-.phase-card:nth-child(6) {
-    animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
 .phase-card:hover {
@@ -258,9 +229,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.7s forwards;
 }
 
 @media (min-width: 768px) {

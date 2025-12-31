@@ -221,7 +221,7 @@
         <div class="container">
             <div class="header-content">
                 <!-- Logo -->
-                <button class="logo" data-scroll-to="inicio">
+                <button class="logo" data-section="inicio" aria-label="Ir a inicio">
                     <div class="logo-icon">
                         <span>M</span>
                     </div>
@@ -232,52 +232,55 @@
                 </button>
 
                 <!-- Desktop Navigation -->
-                <nav class="nav-desktop">
-                    <a href="#inicio" class="nav-link" data-section="inicio" data-i18n="nav.inicio">Inicio</a>
-                    <a href="#nosotros" class="nav-link" data-section="nosotros" data-i18n="nav.nosotros">Nosotros</a>
-                    <a href="#servicios" class="nav-link" data-section="servicios" data-i18n="nav.servicios">Servicios</a>
-                    <a href="#metodologia" class="nav-link" data-section="metodologia" data-i18n="nav.metodologia">Metodología</a>
-                    <a href="#valores" class="nav-link" data-section="valores" data-i18n="nav.valores">Valores</a>
-                    <a href="#contacto" class="nav-link" data-section="contacto" data-i18n="nav.contacto">Contacto</a>
+                <nav class="nav-desktop" aria-label="Navegación principal">
+                    <button class="nav-link" data-section="inicio" data-i18n="nav.inicio">Inicio</button>
+                    <button class="nav-link" data-section="nosotros" data-i18n="nav.nosotros">Nosotros</button>
+                    <button class="nav-link" data-section="servicios" data-i18n="nav.servicios">Servicios</button>
+                    <button class="nav-link" data-section="metodologia" data-i18n="nav.metodologia">Metodología</button>
+                    <button class="nav-link" data-section="valores" data-i18n="nav.valores">Valores</button>
+                    <button class="nav-link" data-section="contacto" data-i18n="nav.contacto">Contacto</button>
                 </nav>
 
-                <!-- Language Selector -->
+                <!-- Language Selector Desktop -->
                 <div class="language-selector">
-                    <button class="lang-button" data-lang="es" aria-label="🇪🇸 Cambiar a Español">
-                        <!--<span class="lang-flag">🇪🇸</span>-->
+                    <button class="lang-button" data-lang="es" aria-label="Cambiar a Español">
                         <span class="lang-text">ES</span>
                     </button>
-                    <button class="lang-button" data-lang="en" aria-label="🇬🇧 Switch to English">
-                        <!--<span class="lang-flag">🇬🇧</span>-->
+                    <button class="lang-button" data-lang="en" aria-label="Switch to English">
                         <span class="lang-text">EN</span>
                     </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button class="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="mobile-menu-button" aria-label="Abrir menú" aria-expanded="false">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
                 </button>
             </div>
 
             <!-- Mobile Navigation -->
-            <div class="mobile-menu-overlay"></div>
-            <nav class="nav-mobile" role="navigation" aria-label="Menú móvil">
-                <a href="#inicio" class="nav-link-mobile" data-section="inicio" data-i18n="nav.inicio">Inicio</a>
-                <a href="#nosotros" class="nav-link-mobile" data-section="nosotros" data-i18n="nav.nosotros">Nosotros</a>
-                <a href="#servicios" class="nav-link-mobile" data-section="servicios" data-i18n="nav.servicios">Servicios</a>
-                <a href="#metodologia" class="nav-link-mobile" data-section="metodologia" data-i18n="nav.metodologia">Metodología</a>
-                <a href="#valores" class="nav-link-mobile" data-section="valores" data-i18n="nav.valores">Valores</a>
-                <a href="#contacto" class="nav-link-mobile" data-section="contacto" data-i18n="nav.contacto">Contacto</a>
+            <nav class="nav-mobile" aria-label="Menú móvil">
+                <button class="nav-link-mobile" data-section="inicio" data-i18n="nav.inicio">Inicio</button>
+                <button class="nav-link-mobile" data-section="nosotros" data-i18n="nav.nosotros">Nosotros</button>
+                <button class="nav-link-mobile" data-section="servicios" data-i18n="nav.servicios">Servicios</button>
+                <button class="nav-link-mobile" data-section="metodologia" data-i18n="nav.metodologia">Metodología</button>
+                <button class="nav-link-mobile" data-section="valores" data-i18n="nav.valores">Valores</button>
+                <button class="nav-link-mobile" data-section="contacto" data-i18n="nav.contacto">Contacto</button>
                 
                 <!-- Language Selector Mobile -->
                 <div class="language-selector-mobile">
-                    <button class="lang-button" data-lang="es" aria-label="🇪🇸 Cambiar a Español">
+                    <button class="lang-button" data-lang="es" aria-label="Cambiar a Español">
                         <span class="lang-flag">🇪🇸</span>
                         <span class="lang-text" data-i18n="lang.spanish">Español</span>
                     </button>
-                    <button class="lang-button" data-lang="en" aria-label="🇬🇧 Switch to English">
+                    <button class="lang-button" data-lang="en" aria-label="Switch to English">
                         <span class="lang-flag">🇬🇧</span>
                         <span class="lang-text" data-i18n="lang.english">English</span>
                     </button>
