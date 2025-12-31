@@ -240,10 +240,23 @@
     border-radius: var(--border-radius-lg, 0.75rem);
     transition: all 0.3s ease;
     transition: var(--transition-base, all 0.3s ease);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.mobile-menu-button svg {
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
 .mobile-menu-button:hover {
     background-color: rgba(35, 66, 95, 0.5);
+}
+
+.mobile-menu-button:active {
+    transform: scale(0.95);
 }
 
 @media (min-width: 1024px) {

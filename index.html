@@ -197,6 +197,42 @@
     }
     </script>
     
+    <!-- Critical CSS for mobile menu visibility -->
+    <style>
+        /* Ensure mobile menu button is always visible on mobile */
+        @media (max-width: 1023px) {
+            .mobile-menu-button {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 2.5rem;
+                height: 2.5rem;
+                background: transparent;
+                border: none;
+                color: #E5F3F8;
+                cursor: pointer;
+                border-radius: 0.75rem;
+                flex-shrink: 0;
+                position: relative;
+                z-index: 10;
+            }
+            .mobile-menu-button svg {
+                width: 24px;
+                height: 24px;
+                display: block;
+            }
+            .nav-desktop,
+            .language-selector {
+                display: none !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            .mobile-menu-button {
+                display: none !important;
+            }
+        }
+    </style>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/variables.css?v=2.0">
     <link rel="stylesheet" href="assets/css/base.css?v=2.0">
@@ -1218,15 +1254,15 @@
     </button>
 
     <!-- Scripts -->
-    <script src="assets/js/header.js"></script>
-    <script src="assets/js/hero.js"></script>
-    <script src="assets/js/about.js"></script>
-    <script src="assets/js/services.js"></script>
-    <script src="assets/js/methodology.js"></script>
-    <script src="assets/js/values.js"></script>
-    <script src="assets/js/contact.js"></script>
-    <script src="assets/js/footer.js"></script>
-    <script src="assets/js/i18n.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/header.js?v=2.0"></script>
+    <script src="assets/js/hero.js?v=2.0"></script>
+    <script src="assets/js/about.js?v=2.0"></script>
+    <script src="assets/js/services.js?v=2.0"></script>
+    <script src="assets/js/methodology.js?v=2.0"></script>
+    <script src="assets/js/values.js?v=2.0"></script>
+    <script src="assets/js/contact.js?v=2.0"></script>
+    <script src="assets/js/footer.js?v=2.0"></script>
+    <script src="assets/js/i18n.js?v=2.0"></script>
+    <script src="assets/js/main.js?v=2.0"></script>
 </body>
 </html>
