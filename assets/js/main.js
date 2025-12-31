@@ -39,10 +39,12 @@ function initSectionAnimations() {
         return;
     }
 
+    // Ajustar rootMargin según el tamaño de pantalla
+    const isMobile = window.innerWidth < 768;
     const observerOptions = {
         root: null,
-        rootMargin: '-80px',
-        threshold: 0.15
+        rootMargin: isMobile ? '0px' : '-80px',
+        threshold: isMobile ? 0.05 : 0.15
     };
 
     const observer = new IntersectionObserver((entries) => {
