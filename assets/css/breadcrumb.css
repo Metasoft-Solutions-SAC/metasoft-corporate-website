@@ -1,0 +1,101 @@
+/**
+ * Breadcrumb Navigation Styles
+ * Metasoft Solutions - 2025
+ * SEO & UX Enhancement
+ */
+
+.breadcrumb-nav {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(75, 187, 236, 0.1);
+    padding: 0.75rem 0;
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.breadcrumb-nav.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.breadcrumb-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #8FA3B8;
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+    content: "›";
+    font-size: 1.125rem;
+    color: #4BBBEC;
+    margin-left: 0.5rem;
+}
+
+.breadcrumb-list li a {
+    color: #8FA3B8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.breadcrumb-list li a:hover {
+    color: #4BBBEC;
+}
+
+.breadcrumb-current {
+    color: #E5F3F8;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .breadcrumb-nav {
+        top: 70px;
+        padding: 0.5rem 0;
+    }
+
+    .breadcrumb-list {
+        padding: 0 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .breadcrumb-list li:not(:last-child)::after {
+        margin-left: 0.25rem;
+    }
+}
+
+/* Animation on scroll */
+@keyframes breadcrumbSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.breadcrumb-nav.animate-in {
+    animation: breadcrumbSlideIn 0.3s ease-out forwards;
+}
