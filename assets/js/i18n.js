@@ -356,14 +356,29 @@ class I18n {
     }
 
     t(key) {
-        return this.translations[this.currentLang][key] || key;
+        const translation = this.translations[this.currentLang]?.[key];
+        if (!translation) {
+            console.warn(`Translation missing for key: "${key}" in language: "${this.currentLang}"`);
+            return key;
+        }
+        return translation;
     }
 
     updatePageContent() {
         // Actualizar todos los elementos con data-i18n
-        document.querySelectorAll('[data-i18n]').forEach(element => {
+        const elements = document.querySelectorAll('[data-i18n]');
+        console.log(`Updating ${elements.length} elements with translations for language: ${this.currentLang}`);
+        
+        elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
+            if (!key) return;
+            
             const translation = this.t(key);
+            
+            // No actualizar si la traducción es la misma que la clave (error)
+            if (translation === key) {
+                console.warn(`No translation found for: ${key}`);
+            }
             
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translation;
@@ -375,13 +390,17 @@ class I18n {
         // Actualizar atributos aria-label
         document.querySelectorAll('[data-i18n-aria]').forEach(element => {
             const key = element.getAttribute('data-i18n-aria');
-            element.setAttribute('aria-label', this.t(key));
+            if (key) {
+                element.setAttribute('aria-label', this.t(key));
+            }
         });
 
         // Dispatch evento personalizado
         window.dispatchEvent(new CustomEvent('languageChanged', { 
             detail: { lang: this.currentLang } 
         }));
+        
+        console.log(`✓ i18n: Content updated to ${this.currentLang}`);
     }
 
     updateLanguageSelector() {
@@ -423,19 +442,35 @@ class I18n {
 // Instancia global
 const i18n = new I18n();
 
-// Inicializar al cargar el DOM
-document.addEventListener('DOMContentLoaded', () => {
+// Exportar para uso global inmediatamente
+window.i18n = i18n;
+
+// Función de inicialización
+function initI18n() {
+    console.log('🌐 Initializing i18n system...');
     i18n.setLanguage(i18n.currentLang);
     
     // Event listeners para botones de idioma
-    document.querySelectorAll('[data-lang]').forEach(button => {
+    const langButtons = document.querySelectorAll('[data-lang]');
+    console.log(`Found ${langButtons.length} language buttons`);
+    
+    langButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const lang = button.getAttribute('data-lang');
+            console.log(`Switching language to: ${lang}`);
             i18n.setLanguage(lang);
         });
     });
-});
+    
+    console.log('✓ i18n system initialized');
+}
 
-// Exportar para uso global
-window.i18n = i18n;
+// Inicializar lo antes posible
+if (document.readyState === 'loading') {
+    // DOM aún está cargando
+    document.addEventListener('DOMContentLoaded', initI18n);
+} else {
+    // DOM ya está listo, ejecutar inmediatamente
+    initI18n();
+}
