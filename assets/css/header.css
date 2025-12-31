@@ -300,6 +300,107 @@
     width: 100%;
 }
 
+/* ========================================
+   Language Selector
+   ======================================== */
+
+.language-selector {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+    .language-selector {
+        display: flex;
+    }
+}
+
+.lang-button {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-button:hover {
+    background: rgba(26, 107, 194, 0.1);
+    border-color: rgba(26, 107, 194, 0.3);
+    color: var(--text-light);
+}
+
+.lang-button.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-color: var(--primary-light);
+    color: var(--text-light);
+    box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
+    transform: scale(1.05);
+}
+
+.lang-button.active .lang-flag {
+    animation: flagPulse 0.5s ease-out;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+@keyframes flagPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.lang-flag {
+    font-size: 1.125rem;
+    line-height: 1;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.lang-text {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+/* Language Selector Mobile */
+.language-selector-mobile {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-selector-mobile .lang-button {
+    flex: 1;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+}
+
+.language-selector-mobile .lang-text {
+    display: inline;
+}
+
+@media (min-width: 1024px) {
+    .language-selector-mobile {
+        display: none;
+    }
+}
+
 /* Mobile Nav Link Slide Animation */
 .nav-link-mobile {
     transition: all 0.3s ease;
