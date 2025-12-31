@@ -8,8 +8,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar módulos generales
+    initSectionAnimations();
     initScrollEffects();
-    initSmoothScroll();
     initFormValidation();
     
     // Inicializar mejoras UX
@@ -18,74 +18,79 @@ document.addEventListener('DOMContentLoaded', function() {
     initToastNotifications();
     initAccessibilityFeatures();
     initReducedMotion();
+    initImageLoading();
     preventFOUC();
 
     console.log('✨ Metasoft Corporate Website - All scripts initialized');
 });
 
 /**
- * Inicializar Header con detección de sección activa
+ * Inicializar animaciones de secciones con Intersection Observer
  */
-function initHeader() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
-    
-    if (sections.length === 0 || navLinks.length === 0) return;
+function initSectionAnimations() {
+    // Verificar soporte del navegador
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: mostrar todas las secciones inmediatamente
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('is-visible');
+        });
+        return;
+    }
 
     const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '-80px 0px -60% 0px'
+        root: null,
+        rootMargin: '-80px',
+        threshold: 0.15
     };
 
-    const sectionObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const sectionId = entry.target.id;
+                entry.target.classList.add('is-visible');
                 
-                // Actualizar links activos
-                navLinks.forEach(link => {
-                    const linkSection = link.getAttribute('data-section');
-                    if (linkSection === sectionId) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
+                // Analytics: trackear vista de sección
+                if (typeof gtag !== 'undefined') {
+                    const sectionId = entry.target.id || 'unknown';
+                    gtag('event', 'section_view', {
+                        'section_name': sectionId,
+                        'event_category': 'engagement'
+                    });
+                }
+                
+                // Opcional: dejar de observar después de animar
+                // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    sections.forEach(section => sectionObserver.observe(section));
+    // Observar todas las secciones excepto hero
+    document.querySelectorAll('section:not(.hero)').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Hero siempre visible desde el inicio
+    const heroSection = document.querySelector('section.hero');
+    if (heroSection) {
+        heroSection.classList.add('is-visible');
+    }
 }
 
 /**
- * Menú móvil (hamburguesa)
+ * Lazy loading mejorado para imágenes
  */
-function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMobile = document.querySelector('.nav-mobile');
-
-    if (!hamburger || !navMobile) return;
-
-    hamburger.addEventListener('click', function() {
-        navMobile.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-
-    // Cerrar menú al hacer click en un enlace
-    const navLinks = document.querySelectorAll('.nav-link-mobile');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMobile.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
-
-    // Cerrar menú al hacer click fuera
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navMobile.contains(e.target)) {
-            navMobile.classList.remove('active');
-            hamburger.classList.remove('active');
+function initImageLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    images.forEach(img => {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', () => {
+                img.classList.add('loaded');
+            });
+            img.addEventListener('error', () => {
+                img.classList.add('loaded');
+            });
         }
     });
 }
@@ -111,55 +116,6 @@ function initScrollEffects() {
         }
 
         lastScroll = currentScroll;
-    });
-
-    // Intersection Observer para animaciones de elementos
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observar elementos que queremos animar
-    const animatedElements = document.querySelectorAll('.feature-card, .footer-section');
-    animatedElements.forEach(el => observer.observe(el));
-}
-
-/**
- * Scroll suave para anclas
- */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-
-            // Ignorar si es solo "#"
-            if (href === '#') {
-                e.preventDefault();
-                return;
-            }
-
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
     });
 }
 

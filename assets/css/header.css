@@ -126,8 +126,10 @@
 }
 
 .nav-link.active {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     color: var(--text-light);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
 }
 
 /* Mobile Menu Button */
@@ -212,8 +214,11 @@
 }
 
 .nav-link-mobile.active {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     color: var(--text-light);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(26, 107, 194, 0.3);
+    border-left: 4px solid var(--primary-light);
 }
 
 /* ========================================

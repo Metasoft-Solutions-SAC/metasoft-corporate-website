@@ -1,6 +1,7 @@
 /**
  * Header - Metasoft Solutions
  * Maneja la navegación y detección de sección activa
+ * Refactorizado con mejores prácticas y detección precisa
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -10,71 +11,214 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Inicializar Header con detección de sección activa
+ * Inicializar Header con detección de sección activa mejorada
  */
 function initHeader() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+    const header = document.querySelector('header');
     
     if (sections.length === 0 || navLinks.length === 0) return;
 
-    const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '-80px 0px -60% 0px'
-    };
+    let currentActiveSection = null;
+    let isScrollingProgrammatically = false;
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const sectionId = entry.target.id;
+    /**
+     * Obtener altura dinámica del header
+     */
+    function getHeaderOffset() {
+        return header ? header.offsetHeight : 80;
+    }
+
+    /**
+     * Determinar qué sección está activa basándose en la posición del scroll
+     */
+    function updateActiveSection() {
+        if (isScrollingProgrammatically) return;
+
+        const headerOffset = getHeaderOffset();
+        // Punto de referencia: mitad del viewport para mejor detección
+        const viewportMiddle = window.scrollY + (window.innerHeight / 2);
+        let newActiveSection = null;
+        let bestMatch = null;
+        let minDistance = Infinity;
+
+        // Encontrar qué sección ocupa más espacio en el viewport
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            const sectionMiddle = sectionTop + (section.offsetHeight / 2);
+
+            // Calcular cuánto de la sección está visible
+            const visibleStart = Math.max(sectionTop, window.scrollY + headerOffset);
+            const visibleEnd = Math.min(sectionBottom, window.scrollY + window.innerHeight);
+            const visibleHeight = Math.max(0, visibleEnd - visibleStart);
+
+            // Si hay altura visible, calcular distancia al centro del viewport
+            if (visibleHeight > 0) {
+                const distance = Math.abs(viewportMiddle - sectionMiddle);
                 
-                // Actualizar links activos
-                navLinks.forEach(link => {
-                    const linkSection = link.getAttribute('data-section');
-                    if (linkSection === sectionId) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
+                // Priorizar la sección con menor distancia al centro del viewport
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    bestMatch = section.id;
+                    
+                    // Si el centro del viewport está dentro de esta sección, es match directo
+                    if (viewportMiddle >= sectionTop && viewportMiddle < sectionBottom) {
+                        newActiveSection = section.id;
                     }
-                });
+                }
             }
         });
-    }, observerOptions);
 
-    sections.forEach(section => sectionObserver.observe(section));
+        // Usar best match si no hay match directo
+        if (!newActiveSection && bestMatch) {
+            newActiveSection = bestMatch;
+        }
 
-    // Scroll suave para el logo
-    const logo = document.querySelector('.logo');
-    if (logo) {
-        logo.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-scroll-to');
-            const targetElement = document.getElementById(targetId);
+        // Caso especial: inicio del documento (solo si estamos REALMENTE arriba)
+        const firstSection = sections[0];
+        if (firstSection) {
+            const firstSectionStart = firstSection.offsetTop;
+            const firstSectionHeight = firstSection.offsetHeight;
             
-            if (targetElement) {
-                targetElement.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            // Solo activar inicio si estamos en el primer 30% de la primera sección
+            if (window.scrollY < firstSectionStart + (firstSectionHeight * 0.3)) {
+                newActiveSection = firstSection.id;
+            }
+        }
+
+        // Caso especial: final del documento
+        if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+            newActiveSection = sections[sections.length - 1]?.id || newActiveSection;
+        }
+
+        // Actualizar solo si cambió
+        if (newActiveSection && newActiveSection !== currentActiveSection) {
+            currentActiveSection = newActiveSection;
+            updateNavLinks(newActiveSection);
+        }
+    }
+
+    /**
+     * Actualizar estado activo de los enlaces
+     */
+    function updateNavLinks(activeSection) {
+        navLinks.forEach(link => {
+            const linkSection = link.getAttribute('data-section');
+            if (linkSection === activeSection) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
             }
         });
     }
 
-    // Scroll suave para links de navegación desktop
-    const desktopLinks = document.querySelectorAll('.nav-link');
-    desktopLinks.forEach(link => {
+    /**
+     * Scroll suave a una sección con offset correcto
+     */
+    function scrollToSection(sectionId) {
+        const targetSection = document.getElementById(sectionId);
+        if (!targetSection) return;
+
+        isScrollingProgrammatically = true;
+        const headerOffset = getHeaderOffset();
+        const targetPosition = targetSection.offsetTop - headerOffset;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+
+        // Actualizar inmediatamente el link activo
+        currentActiveSection = sectionId;
+        updateNavLinks(sectionId);
+
+        // Permitir detección automática después del scroll (reducido a 600ms)
+        setTimeout(() => {
+            isScrollingProgrammatically = false;
+        }, 600);
+        
+        // Verificación adicional después de que termine el smooth scroll
+        setTimeout(() => {
+            if (!isScrollingProgrammatically) {
+                updateActiveSection();
+            }
+        }, 800);
+    }
+
+    /**
+     * Throttled scroll handler para optimizar performance
+     */
+    let scrollTimeout = null;
+    let ticking = false;
+    
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateActiveSection();
+                ticking = false;
+            });
+            ticking = true;
+        }
+
+        // Debounce adicional para asegurar actualización final
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            updateActiveSection();
+        }, 150);
+    }
+
+    // Event Listeners
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Click en logo
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-scroll-to') || 'inicio';
+            scrollToSection(targetId);
+        });
+    }
+
+    // Click en enlaces de navegación
+    navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('data-section');
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                targetElement.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            if (targetId) {
+                scrollToSection(targetId);
+                
+                // Cerrar menú móvil si está abierto
+                const navMobile = document.querySelector('.nav-mobile');
+                if (navMobile && navMobile.classList.contains('active')) {
+                    const hamburger = document.querySelector('.hamburger');
+                    const overlay = document.querySelector('.mobile-menu-overlay');
+                    navMobile.classList.remove('active');
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (overlay) overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             }
         });
     });
+
+    // Inicializar en carga
+    setTimeout(() => {
+        updateActiveSection();
+    }, 100);
+
+    // Actualizar en resize (el header puede cambiar de tamaño)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateActiveSection();
+        }, 250);
+    }, { passive: true });
 }
 
 /**
