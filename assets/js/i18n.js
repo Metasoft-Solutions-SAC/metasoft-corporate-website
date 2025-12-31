@@ -125,7 +125,7 @@ const translations = {
         
         // Contact Section
         'contact.badge': 'Contáctanos',
-        'contact.title': 'Cotización Gratis: Solicita Presupuesto para Tu Proyecto de Software en Perú',
+        'contact.title': 'Cotización Gratis: Solicita Presupuesto para Tu Proyecto de Software',
         'contact.subtitle': '¿Tienes un proyecto en mente? Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos tecnológicos.',
         'contact.intro': 'Completa el formulario y te responderemos en menos de 24 horas con una propuesta inicial sin compromiso.',
         
@@ -285,7 +285,7 @@ const translations = {
         
         // Contact Section
         'contact.badge': 'Contact Us',
-        'contact.title': 'Free Quote: Request Budget for Your Software Project in Peru',
+        'contact.title': 'Free Quote: Request Budget for Your Software Project',
         'contact.subtitle': 'Do you have a project in mind? Let\'s talk about how we can help you achieve your technology goals.',
         'contact.intro': 'Fill out the form and we\'ll respond within 24 hours with an initial proposal at no obligation.',
         
