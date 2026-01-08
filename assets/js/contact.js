@@ -163,10 +163,10 @@ function validateField(field) {
 }
 
 /**
- * Manejar el envío del formulario
+ * Manejar el envío del formulario con Web3Forms
  * @param {HTMLFormElement} form - Formulario a enviar
  */
-function handleFormSubmit(form) {
+async function handleFormSubmit(form) {
     const formContainer = form.parentElement;
     const successMessage = formContainer.querySelector('.contact-success');
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -177,15 +177,41 @@ function handleFormSubmit(form) {
         submitBtn.disabled = true;
     }
 
-    // Simular envío (en producción, aquí iría la llamada a la API)
-    setTimeout(() => {
-        console.log('Formulario enviado:', {
-            name: form.name.value,
-            email: form.email.value,
-            company: form.company?.value,
-            phone: form.phone?.value,
-            message: form.message.value
+    // Preparar datos para Web3Forms
+    const formData = new FormData();
+    
+    // Web3Forms Access Key
+    formData.append('access_key', 'f7829f6f-ffeb-4439-9429-6889210152d5');
+    
+    // Asunto del email
+    formData.append('subject', `Nuevo contacto desde la web: ${form.name.value}`);
+    
+    // Datos del formulario
+    formData.append('name', form.name.value);
+    formData.append('from_email', form.email.value);
+    formData.append('company', form.company?.value || 'No especificada');
+    formData.append('phone', form.phone?.value || 'No especificado');
+    formData.append('message', form.message.value);
+    
+    // Campos adicionales opcionales
+    formData.append('from_name', form.name.value);
+    formData.append('replyto', form.email.value);
+    
+    // Redirección deshabilitada (manejamos respuesta con JS)
+    formData.append('redirect', 'false');
+
+    try {
+        // Enviar a Web3Forms
+        console.log('📤 Enviando formulario a Web3Forms...');
+        
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
         });
+
+        const result = await response.json();
+        
+        console.log('📬 Respuesta de Web3Forms:', result);
 
         // Remover loading state
         if (submitBtn) {
@@ -193,33 +219,58 @@ function handleFormSubmit(form) {
             submitBtn.disabled = false;
         }
 
-        // Mostrar toast de éxito
-        if (window.showToast) {
-            window.showToast('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
+        if (result.success) {
+            // Éxito
+            console.log('✅ Email enviado exitosamente a contacto@metasoft.pe');
+            
+            if (window.showToast) {
+                window.showToast('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
+            }
+
+            // Ocultar formulario y mostrar mensaje de éxito
+            form.style.display = 'none';
+            successMessage.style.display = 'flex';
+
+            // Resetear formulario después de 5 segundos
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'flex';
+                successMessage.style.display = 'none';
+                
+                // Limpiar clases de validación
+                const inputs = form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.classList.remove('error', 'valid');
+                    const errorSpan = input.parentElement.querySelector('.form-error');
+                    if (errorSpan) {
+                        errorSpan.textContent = '';
+                        errorSpan.classList.remove('show');
+                    }
+                });
+            }, 5000);
+        } else {
+            throw new Error(result.message || 'Error al enviar el formulario');
         }
 
-        // Ocultar formulario y mostrar mensaje de éxito
-        form.style.display = 'none';
-        successMessage.style.display = 'flex';
+    } catch (error) {
+        console.error('❌ Error al enviar formulario:', error);
+        
+        // Remover loading state
+        if (submitBtn) {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }
 
-        // Resetear formulario después de 5 segundos
-        setTimeout(() => {
-            form.reset();
-            form.style.display = 'flex';
-            successMessage.style.display = 'none';
-            
-            // Limpiar clases de validación
-            const inputs = form.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.classList.remove('error', 'valid');
-                const errorSpan = input.parentElement.querySelector('.form-error');
-                if (errorSpan) {
-                    errorSpan.textContent = '';
-                    errorSpan.classList.remove('show');
-                }
-            });
-        }, 5000);
-    }, 2000);
+        // Mostrar error
+        if (window.showToast) {
+            window.showToast(
+                'Error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente a contacto@metasoft.pe',
+                'error'
+            );
+        } else {
+            alert('Error al enviar el mensaje. Por favor, intenta nuevamente.');
+        }
+    }
 }
 
 
