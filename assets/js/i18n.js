@@ -159,6 +159,7 @@ const translations = {
         'btn.getStarted': 'Comenzar',
         'btn.contactUs': 'Contáctanos',
         'btn.viewMore': 'Ver Más',
+        'btn.viewAllServices': 'Ver todos los servicios',
         
         // Language Selector
         'lang.spanish': 'Español',
@@ -319,6 +320,7 @@ const translations = {
         'btn.getStarted': 'Get Started',
         'btn.contactUs': 'Contact Us',
         'btn.viewMore': 'View More',
+        'btn.viewAllServices': 'View All Services',
         
         // Language Selector
         'lang.spanish': 'Español',

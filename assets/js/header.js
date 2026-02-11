@@ -59,7 +59,9 @@ function initHeader() {
         
         activeSection = sectionId;
         navLinks.forEach(link => {
-            const linkSection = link.getAttribute('data-section');
+            // Extract section ID from href (e.g., "#nosotros" -> "nosotros")
+            const href = link.getAttribute('href');
+            const linkSection = href ? href.replace('#', '') : null;
             link.classList.toggle('active', linkSection === sectionId);
         });
     }
@@ -132,14 +134,18 @@ function initHeader() {
     if (logo) {
         logo.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetSection = logo.getAttribute('data-section') || 'inicio';
+            // Extract section ID from href or default to 'inicio'
+            const href = logo.getAttribute('href');
+            const targetSection = href ? href.replace(/^\/|#/g, '') || 'inicio' : 'inicio';
             scrollToSection(targetSection);
         });
     }
 
     // Navigation links
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link// Extract section ID from href (e.g., "#nosotros" -> "nosotros")
+            const href = link.getAttribute('href');
+            const targetSection = href ? href.replace(/^\/|#/g, '') : null
             e.preventDefault();
             const targetSection = link.getAttribute('data-section');
             if (targetSection) {

@@ -67,10 +67,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
     
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="es-PE" href="https://metasoft.pe/" />
+    <link rel="alternate" hreflang="en" href="https://metasoft.pe/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://metasoft.pe/" />
     
     <!-- PWA & Theme -->
     <meta name="theme-color" content="#1A6BC2">
@@ -250,6 +250,130 @@
     }
     </script>
     
+    <!-- Schema.org JSON-LD: Service Catalog -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "position": 1,
+          "name": "Desarrollo de Software a Medida",
+          "description": "Diseño y construcción de soluciones de software personalizadas alineadas a los procesos específicos de cada organización",
+          "provider": {
+            "@type": "Organization",
+            "name": "Metasoft Solutions SAC",
+            "url": "https://metasoft.pe"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Perú"
+          },
+          "url": "https://metasoft.pe/servicios/desarrollo-software-a-medida/"
+        },
+        {
+          "@type": "Service",
+          "position": 2,
+          "name": "Desarrollo de Aplicaciones Móviles",
+          "description": "Desarrollo de aplicaciones móviles nativas y multiplataforma para iOS y Android",
+          "provider": {
+            "@type": "Organization",
+            "name": "Metasoft Solutions SAC"
+          },
+          "areaServed": "PE",
+          "url": "https://metasoft.pe/servicios/desarrollo-aplicaciones-moviles/"
+        },
+        {
+          "@type": "Service",
+          "position": 3,
+          "name": "Desarrollo de Plataformas SaaS",
+          "description": "Construcción de plataformas SaaS escalables y multi-tenant en la nube",
+          "provider": {
+            "@type": "Organization",
+            "name": "Metasoft Solutions SAC"
+          },
+          "areaServed": "PE",
+          "url": "https://metasoft.pe/servicios/desarrollo-plataformas-saas/"
+        },
+        {
+          "@type": "Service",
+          "position": 4,
+          "name": "Desarrollo Web y Landing Pages",
+          "description": "Desarrollo de sitios web corporativos y landing pages optimizadas para conversión y SEO",
+          "provider": {
+            "@type": "Organization",
+            "name": "Metasoft Solutions SAC"
+          },
+          "areaServed": "PE",
+          "url": "https://metasoft.pe/servicios/desarrollo-web-landing-pages/"
+        },
+        {
+          "@type": "Service",
+          "position": 5,
+          "name": "Consultoría IT y Transformación Digital",
+          "description": "Asesoría estratégica en decisiones tecnológicas, arquitectura de software y modernización de procesos empresariales",
+          "provider": {
+            "@type": "Organization",
+            "name": "Metasoft Solutions SAC"
+          },
+          "areaServed": "PE",
+          "url": "https://metasoft.pe/servicios/consultoria-it-transformacion-digital/"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Schema.org JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta desarrollar software a medida en Perú?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El costo del desarrollo de software a medida depende de la complejidad del proyecto, funcionalidades requeridas y tecnologías utilizadas. Proyectos pequeños pueden iniciar desde $3,000 USD, mientras que proyectos medianos pueden costar entre $10,000 - $50,000 USD. Ofrecemos cotizaciones detalladas sin compromiso, con alcance claro y cronograma definido. El precio incluye análisis, diseño, desarrollo, testing y despliegue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo toma desarrollar una aplicación móvil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El tiempo de desarrollo de una aplicación móvil varía según la complejidad: Aplicaciones sencillas: 2-3 meses. Aplicaciones medianas: 3-6 meses. Aplicaciones complejas: 6-12 meses. Trabajamos con metodología ágil, entregando funcionalidades cada 2-3 semanas, lo que permite validar avances y hacer ajustes sobre la marcha."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué diferencia hay entre software a medida y un ERP estándar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los ERPs (como SAP, Odoo, Microsoft Dynamics) son soluciones estándar que intentan cubrir múltiples industrias con funcionalidades predefinidas. Requieren adaptación de tus procesos al software. El software a medida se construye específicamente para tu negocio, con las funcionalidades exactas que necesitas, adaptándose a tu forma de trabajar actual. Es ideal cuando tus procesos son únicos o cuando los ERPs resultan demasiado costosos o complejos para tu escala."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Ofrecen soporte y mantenimiento después del lanzamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Ofrecemos planes de soporte y mantenimiento post-lanzamiento que incluyen: corrección de bugs, actualizaciones de seguridad, mejoras funcionales, monitoreo de performance 24/7, respaldo de datos, y evolución del software según necesidades emergentes. El primer mes de soporte suele estar incluido en el proyecto, luego ofrecemos planes mensuales flexibles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Trabajan con metodología ágil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Trabajamos con metodología ágil basada en Scrum y certificada con MoProSoft (Modelo de Procesos para la Industria de Software). Esto significa: sprints de 2-3 semanas, entregas progresivas, reuniones de seguimiento semanales, transparencia total del avance, posibilidad de hacer ajustes durante el desarrollo, y reducción de riesgos al validar tempranamente cada funcionalidad."
+          }
+        }
+      ]
+    }
+    </script>
+    
     <!-- Critical CSS for mobile menu visibility -->
     <style>
         /* Ensure mobile menu button is always visible on mobile */
@@ -312,7 +436,7 @@
         <div class="container">
             <div class="header-content">
                 <!-- Logo -->
-                <button class="logo" data-section="inicio" aria-label="Ir a inicio">
+                <a href="/" class="logo" aria-label="Ir a inicio">
                     <div class="logo-icon">
                         <span>M</span>
                     </div>
@@ -320,16 +444,16 @@
                         <span class="logo-name">Metasoft Solutions</span>
                         <span class="logo-subtitle">SAC</span>
                     </div>
-                </button>
+                </a>
 
                 <!-- Desktop Navigation -->
                 <nav class="nav-desktop" aria-label="Navegación principal">
-                    <button class="nav-link" data-section="inicio" data-i18n="nav.inicio">Inicio</button>
-                    <button class="nav-link" data-section="nosotros" data-i18n="nav.nosotros">Nosotros</button>
-                    <button class="nav-link" data-section="servicios" data-i18n="nav.servicios">Servicios</button>
-                    <button class="nav-link" data-section="metodologia" data-i18n="nav.metodologia">Metodología</button>
-                    <button class="nav-link" data-section="valores" data-i18n="nav.valores">Valores</button>
-                    <button class="nav-link" data-section="contacto" data-i18n="nav.contacto">Contacto</button>
+                    <a href="/" class="nav-link" data-i18n="nav.inicio">Inicio</a>
+                    <a href="#nosotros" class="nav-link" data-i18n="nav.nosotros">Nosotros</a>
+                    <a href="#servicios" class="nav-link" data-i18n="nav.servicios">Servicios</a>
+                    <a href="#metodologia" class="nav-link" data-i18n="nav.metodologia">Metodología</a>
+                    <a href="#valores" class="nav-link" data-i18n="nav.valores">Valores</a>
+                    <a href="#contacto" class="nav-link" data-i18n="nav.contacto">Contacto</a>
                 </nav>
 
                 <!-- Language Selector Desktop -->
@@ -358,12 +482,12 @@
 
             <!-- Mobile Navigation -->
             <nav class="nav-mobile" aria-label="Menú móvil">
-                <button class="nav-link-mobile" data-section="inicio" data-i18n="nav.inicio">Inicio</button>
-                <button class="nav-link-mobile" data-section="nosotros" data-i18n="nav.nosotros">Nosotros</button>
-                <button class="nav-link-mobile" data-section="servicios" data-i18n="nav.servicios">Servicios</button>
-                <button class="nav-link-mobile" data-section="metodologia" data-i18n="nav.metodologia">Metodología</button>
-                <button class="nav-link-mobile" data-section="valores" data-i18n="nav.valores">Valores</button>
-                <button class="nav-link-mobile" data-section="contacto" data-i18n="nav.contacto">Contacto</button>
+                <a href="/" class="nav-link-mobile" data-i18n="nav.inicio">Inicio</a>
+                <a href="#nosotros" class="nav-link-mobile" data-i18n="nav.nosotros">Nosotros</a>
+                <a href="#servicios" class="nav-link-mobile" data-i18n="nav.servicios">Servicios</a>
+                <a href="#metodologia" class="nav-link-mobile" data-i18n="nav.metodologia">Metodología</a>
+                <a href="#valores" class="nav-link-mobile" data-i18n="nav.valores">Valores</a>
+                <a href="#contacto" class="nav-link-mobile" data-i18n="nav.contacto">Contacto</a>
                 
                 <!-- Language Selector Mobile -->
                 <div class="language-selector-mobile">
@@ -408,14 +532,15 @@
 
                     <!-- Main Heading -->
                     <h1>
-                        <span data-i18n="hero.title">Tecnología que impulsa</span> <span class="gradient-text" data-i18n="hero.titleHighlight">tus metas</span>
+                        <span data-i18n="hero.title">Desarrollo de Software a Medida en Perú</span>
                     </h1>
 
                     <!-- Description -->
                     <p class="hero-description" data-i18n="hero.subtitle">
-                        Creamos software personalizado que simplifica tus procesos, ahorra tiempo
-                        y hace crecer tu negocio de forma sostenible.
+                        Soluciones tecnológicas personalizadas que simplifican tus procesos, ahorran tiempo
+                        y hacen crecer tu negocio de forma sostenible.
                     </p>
+                    <p class="hero-tagline">Tecnología que impulsa tus metas</p>
 
                     <!-- CTA Buttons -->
                     <div class="hero-buttons">
@@ -551,10 +676,10 @@
                         <div class="services-badge">
                             <span data-i18n="services.badge">Nuestros Servicios</span>
                         </div>
-                        <h2 data-i18n="services.title">Servicios de Desarrollo de Software a Medida y Transformación Digital en Perú</h2>
+                        <h2 data-i18n="services.title">Nuestros Servicios</h2>
                         <p class="services-intro" data-i18n="services.intro">
-                            Ofrecemos un portafolio integral de servicios diseñados para cubrir todas las
-                            necesidades tecnológicas de tu organización.
+                            Ofrecemos un portafolio integral de servicios de desarrollo de software a medida y transformación digital diseñados para cubrir todas las
+                            necesidades tecnológicas de tu organización en Perú.
                         </p>
                     </div>
 
@@ -573,7 +698,7 @@
                                 </div>
                             </div>
                             <div class="service-content">
-                                <h3 data-i18n="services.custom.title">Desarrollo de Software a Medida para Empresas</h3>
+                                <h3 data-i18n="services.custom.title"><a href="servicios/desarrollo-software-a-medida/">Desarrollo de Software a Medida para Empresas en Perú</a></h3>
                                 <p data-i18n="services.custom.desc">
                                     Diseño y construcción de soluciones alineadas a los procesos específicos de cada organización,
                                     incluyendo su implementación y administración técnica.
@@ -594,9 +719,9 @@
                                 </div>
                             </div>
                             <div class="service-content">
-                                <h3 data-i18n="services.mobile.title">Desarrollo de Aplicaciones Móviles Multiplataforma</h3>
+                                <h3 data-i18n="services.mobile.title"><a href="servicios/desarrollo-aplicaciones-moviles/">Desarrollo de Aplicaciones Móviles iOS y Android</a></h3>
                                 <p data-i18n="services.mobile.desc">
-                                    Desarrollo de aplicaciones móviles modernas, con énfasis en usabilidad, estabilidad y rendimiento,
+                                    Desarrollo de aplicaciones móviles modernas nativas y multiplataforma, con énfasis en usabilidad, estabilidad y rendimiento,
                                     junto con su despliegue y soporte continuo.
                                 </p>
                             </div>
@@ -614,9 +739,9 @@
                                 </div>
                             </div>
                             <div class="service-content">
-                                <h3 data-i18n="services.saas.title">Desarrollo de Plataformas SaaS en la Nube</h3>
+                                <h3 data-i18n="services.saas.title"><a href="servicios/desarrollo-plataformas-saas/">Desarrollo de Plataformas SaaS en la Nube</a></h3>
                                 <p data-i18n="services.saas.desc">
-                                    Construcción de plataformas de software como servicio, completamente administradas,
+                                    Construcción de plataformas de software como servicio (SaaS), completamente administradas,
                                     incluyendo mantenimiento, actualizaciones y seguridad.
                                 </p>
                             </div>
@@ -636,9 +761,9 @@
                                 </div>
                             </div>
                             <div class="service-content">
-                                <h3 data-i18n="services.web.title">Desarrollo Web Corporativo y Landing Pages Optimizadas</h3>
+                                <h3 data-i18n="services.web.title"><a href="servicios/desarrollo-web-landing-pages/">Desarrollo Web Corporativo y Landing Pages</a></h3>
                                 <p data-i18n="services.web.desc">
-                                    Desarrollo de sitios web profesionales orientados a rendimiento, disponibilidad
+                                    Desarrollo de sitios web profesionales orientados a rendimiento, SEO, disponibilidad
                                     y objetivos institucionales o comerciales.
                                 </p>
                             </div>
@@ -658,9 +783,9 @@
                                 </div>
                             </div>
                             <div class="service-content">
-                                <h3 data-i18n="services.consulting.title">Consultoría IT y Transformación Digital Empresarial</h3>
+                                <h3 data-i18n="services.consulting.title"><a href="servicios/consultoria-it-transformacion-digital/">Consultoría IT y Transformación Digital</a></h3>
                                 <p data-i18n="services.consulting.desc">
-                                    Asesoría en decisiones tecnológicas, diseño de arquitecturas y modernización de procesos,
+                                    Asesoría estratégica en decisiones tecnológicas, diseño de arquitecturas y modernización de procesos,
                                     con un enfoque estratégico y sostenible.
                                 </p>
                             </div>
@@ -674,9 +799,8 @@
                             Cada proyecto es único. Conversemos sobre tus necesidades específicas y diseñemos
                             juntos la solución ideal para tu organización.
                         </p>
-                        <button class="btn-cta" data-scroll-to="contacto">
-                            <span data-i18n="btn.contactUs">Contáctanos</span>
-                        </button>
+                        <a href="/servicios/" class="btn-cta" data-i18n="btn.viewAllServices">Ver todos los servicios</a>
+                        <a href="/contacto/" class="btn-cta" data-i18n="btn.contactUs">Contáctanos</a>
                     </div>
                 </div>
             </div>
