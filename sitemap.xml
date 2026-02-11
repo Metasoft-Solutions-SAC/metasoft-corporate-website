@@ -4,7 +4,9 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Homepage -->
+  <!-- Homepage - Single Page Application -->
+  <!-- Note: This is a SPA (Single Page App), all navigation is client-side -->
+  <!-- For better SEO, consider migrating to multi-page architecture -->
   <url>
     <loc>https://metasoft.pe/</loc>
     <lastmod>2025-12-31</lastmod>
@@ -12,42 +14,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Sección Nosotros -->
-  <url>
-    <loc>https://metasoft.pe/#nosotros</loc>
-    <lastmod>2025-12-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Sección Servicios -->
-  <url>
-    <loc>https://metasoft.pe/#servicios</loc>
-    <lastmod>2025-12-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Sección Metodología -->
-  <url>
-    <loc>https://metasoft.pe/#metodologia</loc>
-    <lastmod>2025-12-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Sección Valores -->
-  <url>
-    <loc>https://metasoft.pe/#valores</loc>
-    <lastmod>2025-12-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Sección Contacto -->
-  <url>
-    <loc>https://metasoft.pe/#contacto</loc>
-    <lastmod>2025-12-31</lastmod>
+</urlset>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

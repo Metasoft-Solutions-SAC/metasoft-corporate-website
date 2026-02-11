@@ -23,6 +23,7 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Ignorar archivos temporales
 *.tmp
@@ -33,12 +34,20 @@ yarn-error.log*
 dist/
 build/
 .cache/
+.next/
+out/
 
-# Ignorar archivos de configuración local
+# Ignorar archivos de configuración local y variables de entorno
 .env
 .env.local
 .env.*.local
+.env.production
+.env.development
 config.local.js
+
+# Ignorar configuración de Vercel
+.vercel
+.vercel.json.local
 
 # Ignorar archivos de respaldo
 *.bak
@@ -48,6 +57,29 @@ config.local.js
 # Ignorar archivos comprimidos
 *.zip
 *.rar
+*.tar.gz
+
+# Ignorar coverage y test reports
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Ignorar archivos de debugging
+.vscode/launch.json
+.idea/workspace.xml
+
+# Ignorar archivos de sistema de macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignorar archivos de thumbnails de Windows
+Thumbs.db
+ehthumbs.db
+
+# Ignorar archivos de Sentry
+.sentryclirc
 *.7z
 *.tar.gz
 

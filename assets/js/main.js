@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initImageLoading();
     preventFOUC();
 
-    console.log('✨ Metasoft Corporate Website - All scripts initialized');
+    // ✅ All scripts initialized successfully
 });
 
 /**

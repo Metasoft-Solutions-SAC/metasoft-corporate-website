@@ -163,7 +163,7 @@ function validateField(field) {
 }
 
 /**
- * Manejar el envío del formulario con Web3Forms
+ * Manejar el envío del formulario usando API proxy segura
  * @param {HTMLFormElement} form - Formulario a enviar
  */
 async function handleFormSubmit(form) {
@@ -177,41 +177,31 @@ async function handleFormSubmit(form) {
         submitBtn.disabled = true;
     }
 
-    // Preparar datos para Web3Forms
-    const formData = new FormData();
-    
-    // Web3Forms Access Key
-    formData.append('access_key', 'f7829f6f-ffeb-4439-9429-6889210152d5');
-    
-    // Asunto del email
-    formData.append('subject', `Nuevo contacto desde la web: ${form.name.value}`);
-    
-    // Datos del formulario
-    formData.append('name', form.name.value);
-    formData.append('from_email', form.email.value);
-    formData.append('company', form.company?.value || 'No especificada');
-    formData.append('phone', form.phone?.value || 'No especificado');
-    formData.append('message', form.message.value);
-    
-    // Campos adicionales opcionales
-    formData.append('from_name', form.name.value);
-    formData.append('replyto', form.email.value);
-    
-    // Redirección deshabilitada (manejamos respuesta con JS)
-    formData.append('redirect', 'false');
+    // Preparar datos del formulario como JSON
+    const formData = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        company: form.company?.value.trim() || '',
+        phone: form.phone?.value.trim() || '',
+        message: form.message.value.trim()
+    };
 
     try {
-        // Enviar a Web3Forms
-        console.log('📤 Enviando formulario a Web3Forms...');
+        // Enviar a API proxy interna (oculta la API key)
+        // La API maneja validación, sanitización y rate limiting
         
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch('/api/contact', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
         });
 
         const result = await response.json();
         
-        console.log('📬 Respuesta de Web3Forms:', result);
+        // Process response from our API
 
         // Remover loading state
         if (submitBtn) {
@@ -219,9 +209,8 @@ async function handleFormSubmit(form) {
             submitBtn.disabled = false;
         }
 
-        if (result.success) {
-            // Éxito
-            console.log('✅ Email enviado exitosamente a contacto@metasoft.pe');
+        if (response.ok && result.success) {
+            // Éxito - Email enviado
             
             if (window.showToast) {
                 window.showToast('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
@@ -249,11 +238,19 @@ async function handleFormSubmit(form) {
                 });
             }, 5000);
         } else {
-            throw new Error(result.message || 'Error al enviar el formulario');
+            // Error de la API o rate limiting
+            const errorMessage = response.status === 429
+                ? `Has alcanzado el límite de envíos. ${result.message || 'Intenta más tarde.'}`
+                : result.message || 'Error al enviar el mensaje. Por favor, intenta nuevamente.';
+            
+            throw new Error(errorMessage);
         }
 
     } catch (error) {
-        console.error('❌ Error al enviar formulario:', error);
+        // Error al enviar formulario - log error for debugging only in development
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.error('Error al enviar formulario:', error);
+        }
         
         // Remover loading state
         if (submitBtn) {
@@ -261,14 +258,15 @@ async function handleFormSubmit(form) {
             submitBtn.disabled = false;
         }
 
-        // Mostrar error
+        // Mostrar error al usuario
         if (window.showToast) {
             window.showToast(
-                'Error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente a contacto@metasoft.pe',
-                'error'
+                error.message || 'Error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente a janover@metasoft.pe',
+                'error',
+                7000 // 7 segundos para que puedan leer
             );
         } else {
-            alert('Error al enviar el mensaje. Por favor, intenta nuevamente.');
+            alert(error.message || 'Error al enviar el mensaje. Por favor, intenta nuevamente.');
         }
     }
 }
