@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 4rem;
+    height: 6rem;
     padding: 0 1rem;
     max-width: 1280px;
     margin: 0 auto;
@@ -30,7 +30,7 @@
 
 @media (min-width: 768px) {
     .header-content {
-        height: 5rem;
+        height: 6.5rem;
     }
 }
 
@@ -41,7 +41,7 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -59,34 +59,17 @@
 }
 
 .logo-icon {
-    width: 2rem;
-    height: 2rem;
-    background: linear-gradient(to bottom right, #1A6BC2, #4BBBEC);
-    background: linear-gradient(to bottom right, var(--primary-color, #1A6BC2), var(--primary-light, #4BBBEC));
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
     border-radius: 0.75rem;
     border-radius: var(--border-radius-lg, 0.75rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 @media (min-width: 768px) {
     .logo-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-}
-
-.logo-icon span {
-    color: #E5F3F8;
-    color: var(--text-light, #E5F3F8);
-    font-weight: 700;
-    font-size: 1.125rem;
-}
-
-@media (min-width: 768px) {
-    .logo-icon span {
-        font-size: 1.25rem;
+        width: 5rem;
+        height: 5rem;
     }
 }
 
@@ -98,7 +81,7 @@
 .logo-name {
     color: #E5F3F8;
     color: var(--text-light, #E5F3F8);
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 600;
     letter-spacing: -0.025em;
     line-height: 1.2;
@@ -106,7 +89,7 @@
 
 @media (min-width: 768px) {
     .logo-name {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
     }
 }
 

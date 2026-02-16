@@ -47,24 +47,15 @@
 .footer-logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
 .footer-logo-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: linear-gradient(to bottom right, var(--primary-color), var(--primary-light));
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: contain;
     border-radius: var(--border-radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-logo-icon span {
-    color: var(--text-light);
-    font-weight: 700;
-    font-size: 1.25rem;
 }
 
 .footer-logo-text {
@@ -74,14 +65,15 @@
 
 .footer-logo-name {
     color: var(--text-light);
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    font-weight: 600;
     letter-spacing: -0.025em;
     line-height: 1.2;
 }
 
 .footer-logo-subtitle {
     color: var(--text-muted);
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     margin-top: -0.125rem;
 }
 
