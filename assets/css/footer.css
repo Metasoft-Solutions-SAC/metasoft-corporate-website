@@ -52,29 +52,21 @@
 }
 
 .footer-logo-icon {
-    width: 5.5rem;
-    height: 5.5rem;
+    height: 2.25rem;
+    width: auto;
     object-fit: contain;
-    border-radius: var(--border-radius-lg);
 }
 
-.footer-logo-text {
-    display: flex;
-    flex-direction: column;
+@media (min-width: 768px) {
+    .footer-logo-icon {
+        height: 2.75rem;
+    }
 }
 
-.footer-logo-name {
-    color: var(--text-light);
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-}
-
-.footer-logo-subtitle {
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    margin-top: -0.125rem;
+@media (min-width: 1024px) {
+    .footer-logo-icon {
+        height: 3.25rem;
+    }
 }
 
 .footer-description {
